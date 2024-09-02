@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torrent Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Torrent Search</h1>
+    </header>
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for videos...">
+            <button id="searchButton">Search</button>
+        </div>
+    </div>
+    {% block content %}
+        
+    {% endblock %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const searchButton = document.getElementById('searchButton');
+
+            function performSearch() {
+                const query = searchInput.value.trim();
+                if (query) {
+                    // You can change this URL to any search engine or your own search endpoint
+                    const searchUrl = `/${encodeURIComponent(query)}`;
+                    window.location.href = searchUrl;
+                }
+            }
+
+            searchButton.addEventListener('click', performSearch);
+
+            searchInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

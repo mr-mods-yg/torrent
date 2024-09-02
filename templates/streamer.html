@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="video-grid">
+    {% for item in data %}
+        <div class="video-item">
+            <div class="video-info">
+                <div class="video-title">{{item['name']}}</div>
+                <div>seeders :{{item['seeders']}}    <br>leechers :{{item['leechers']}}    <br>completed:{{item['completed']}}</div>
+                {% if (item['size_bytes']/(1000*1000))<1000 %}
+                    <div>size : {{item['size_bytes']/(1000*1000)}} MB </div>
+                {% else %}
+                    <div>size : {{item['size_bytes']/(1000*1000*1000)}} GB </div>
+                {% endif %}
+                
+                <button type="button" onclick="window.location='magnet:?xt=urn:btih:{{item['infohash']}}';">download</button>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+</div>
+{% endblock %}
