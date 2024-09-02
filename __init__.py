@@ -1,2 +1,2 @@
 from . import torrent
-from . import main
+from . import app
